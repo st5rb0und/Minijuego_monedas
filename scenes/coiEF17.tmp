@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4gdjw3x5gkmg"]
+
+[ext_resource type="Script" path="res://scenes/coin.gd" id="1_fbnam"]
+[ext_resource type="Texture2D" uid="uid://bn0hjbs7r45ql" path="res://resources/sprites/Objetos/coin.png" id="2_h3xvr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ejti"]
+atlas = ExtResource("2_h3xvr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ejuw"]
+atlas = ExtResource("2_h3xvr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q6uxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ejti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ejuw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6mog"]
+
+[node name="coin" type="Node2D"]
+script = ExtResource("1_fbnam")
+value = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_q6uxl")
+animation = &"idle"
+frame_progress = 0.959805
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_f6mog")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
