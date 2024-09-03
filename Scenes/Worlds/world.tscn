@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6bb071mbrxon"]
+
+[ext_resource type="PackedScene" uid="uid://cm6g86ipu8jdd" path="res://Scenes/Entities/player.tscn" id="1_82mj8"]
+[ext_resource type="Texture2D" uid="uid://c6h5cajiqr1e8" path="res://Assets/2D/Props/plataforma_base.png" id="2_jeapd"]
+[ext_resource type="PackedScene" uid="uid://b4gdjw3x5gkmg" path="res://Scenes/Objects/Coins/coin.tscn" id="3_t2fo5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o8qd"]
+size = Vector2(1150, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsprl"]
+size = Vector2(110.5, 27)
+
+[node name="world" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_82mj8")]
+position = Vector2(123, 560)
+
+[node name="suelo" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="suelo"]
+position = Vector2(576, 620)
+shape = SubResource("RectangleShape2D_1o8qd")
+debug_color = Color(0.592157, 0, 0.219608, 0.776471)
+
+[node name="Sprite2D" type="Sprite2D" parent="suelo"]
+position = Vector2(578, 816)
+scale = Vector2(35.875, 14)
+texture = ExtResource("2_jeapd")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="fondo" type="ColorRect" parent="UI"]
+offset_right = 300.0
+offset_bottom = 80.0
+color = Color(0.913722, 0, 0.424997, 0.498039)
+
+[node name="label_coins" type="Label" parent="UI"]
+offset_left = 25.0
+offset_top = 14.0
+offset_right = 161.0
+offset_bottom = 71.0
+text = "MONEDAS: "
+metadata/_edit_use_anchors_ = true
+
+[node name="label_score" type="Label" parent="UI"]
+offset_left = 120.0
+offset_top = 14.0
+offset_right = 254.0
+offset_bottom = 79.0
+size_flags_horizontal = 4
+text = "0"
+horizontal_alignment = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 322)
+
+[node name="plataformas" type="Node2D" parent="."]
+
+[node name="plataforma1" type="StaticBody2D" parent="plataformas"]
+position = Vector2(34, 48)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="plataformas/plataforma1"]
+position = Vector2(240.5, 487)
+scale = Vector2(3.46875, 0.750001)
+texture = ExtResource("2_jeapd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataformas/plataforma1"]
+position = Vector2(237.75, 486.5)
+shape = SubResource("RectangleShape2D_dsprl")
+
+[node name="plataforma2" type="StaticBody2D" parent="plataformas"]
+position = Vector2(256, -21)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="plataformas/plataforma2"]
+position = Vector2(240.5, 487)
+scale = Vector2(3.46875, 0.750001)
+texture = ExtResource("2_jeapd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataformas/plataforma2"]
+position = Vector2(237.75, 486.5)
+shape = SubResource("RectangleShape2D_dsprl")
+
+[node name="plataforma3" type="StaticBody2D" parent="plataformas"]
+position = Vector2(502, -23)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="plataformas/plataforma3"]
+position = Vector2(240.5, 487)
+scale = Vector2(3.46875, 0.750001)
+texture = ExtResource("2_jeapd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataformas/plataforma3"]
+position = Vector2(237.75, 486.5)
+shape = SubResource("RectangleShape2D_dsprl")
+
+[node name="objetos" type="Node2D" parent="."]
+
+[node name="coin" parent="objetos" instance=ExtResource("3_t2fo5")]
+position = Vector2(494, 426)
+
+[node name="coin2" parent="objetos" instance=ExtResource("3_t2fo5")]
+position = Vector2(626, 568)
+
+[node name="coin3" parent="objetos" instance=ExtResource("3_t2fo5")]
+position = Vector2(736, 420)
